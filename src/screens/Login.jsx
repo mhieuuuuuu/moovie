@@ -1,22 +1,29 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, useLocation, Link } from "react-router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, pw);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
       alert("Wrong email or password!");
     }
+  };
+
+  const handleToRegister = () => {
+    navigate("/register", { state: location.state });
   };
 
   return (
@@ -50,9 +57,12 @@ const Login = () => {
             </button>
             <p className="text-sm text-subtitle">
               Don't have an account yet?{" "}
-              <Link to="/register" className="text-white hover:text-hover">
+              <button
+                onClick={handleToRegister}
+                className="text-white hover:text-hover"
+              >
                 Register
-              </Link>
+              </button>
             </p>
           </form>
         </div>

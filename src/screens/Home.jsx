@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="w-screen h-full bg-background relative overflow-x-hidden">
       <Navbar />
-      <div className="mt-1 w-screen h-[300px] relative overflow-hidden mt-[-40px] mb-5 absolute">
+      <div className=" w-screen h-[300px] relative overflow-hidden mb-5 absolute">
         <img
           className="w-full absolute"
           src="./../../public/footer-bg.jpg"

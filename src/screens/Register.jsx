@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +12,9 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [pwError, setPwError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from || "/";
 
   const validateName = (name) => {
     // Name should be at least 4 characters and contain only letters and spaces
@@ -97,7 +100,7 @@ const Register = () => {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, pw);
         await updateProfile(res.user, { displayName: name });
-        navigate("/");
+        navigate(from, { replace: true });
       } catch (error) {
         console.log(error);
         alert("This account has already existed!");

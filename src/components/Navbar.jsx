@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
-import { Link } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { MovieDropdown, PeopleDropdown, TVDropdown } from "./NavItems";
 import { useAuth } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
@@ -12,6 +12,13 @@ const Navbar = () => {
   const [dropdownTV, setDropdownTV] = useState(false);
   const [dropdownPeople, setDropdownPeople] = useState(false);
   const { currentUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClickLogin = () => {
+    navigate("/login", { state: { from: location.pathname } });
+  };
+
   return (
     <>
       <div className="w-screen h-[64px] block "></div>
@@ -75,12 +82,12 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex justify-between items-center ">
-              <Link
-                to="/login"
+              <button
+                onClick={handleClickLogin}
                 className="text-white text-lg font-bold hover:text-hover "
               >
                 <LogIn size={24} />
-              </Link>
+              </button>
             </div>
           )}
         </div>
