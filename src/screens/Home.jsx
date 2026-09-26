@@ -15,7 +15,7 @@ const Home = () => {
       <div className=" w-screen h-[300px] relative overflow-hidden mb-5 absolute">
         <img
           className="w-full absolute"
-          src="./../../public/footer-bg.jpg"
+          src="/public/footer-bg.jpg"
         ></img>
         <div className="absolute w-full h-full flex flex-col items-center justify-center">
           <div className=" w-full mb-5">
