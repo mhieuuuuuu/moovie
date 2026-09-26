@@ -28,7 +28,7 @@ const Login = () => {
 
   return (
     <div className="w-screen h-screen relative overflow-hidden absolute">
-      <img className="w-full absolute" src="./../../public/footer-bg.jpg"></img>
+      <img className="w-full absolute" src="/footer-bg.jpg"></img>
       <div className="absolute w-full h-full flex flex-col items-center justify-center">
         <div className="w-screen h-screen bg-transparent flex items-center justify-center">
           <form
